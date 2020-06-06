@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2018.10.22)  6 JUN 2020 15:18
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2018.10.22)  6 JUN 2020 23:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -533,49 +533,49 @@ Package scrlayer-scrpage Info: auto-selection of `pagestyleset=KOMA-Script'.
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 48.
-LaTeX Font Info:    Try loading font information for FML+futm on input line 48.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 22.
+LaTeX Font Info:    Try loading font information for FML+futm on input line 22.
 
  (/usr/share/texlive/texmf-dist/tex/latex/fourier/fmlfutm.fd
 File: fmlfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futm.
 )
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 48.
-LaTeX Font Info:    Try loading font information for FMS+futm on input line 48.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 22.
+LaTeX Font Info:    Try loading font information for FMS+futm on input line 22.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/fmsfutm.fd
 File: fmsfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FMS/futm.
 )
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 48.
-LaTeX Font Info:    Try loading font information for FMX+futm on input line 48.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 22.
+LaTeX Font Info:    Try loading font information for FMX+futm on input line 22.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/fmxfutm.fd
 File: fmxfutm.fd futm-extension
 )
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 48.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 22.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Try loading font information for T1+futs on input line 48.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Try loading font information for T1+futs on input line 22.
 
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/t1futs.fd
 File: t1futs.fd 2004/03/02 Fontinst v1.926 font definitions for T1/futs.
@@ -616,68 +616,68 @@ File: t1futs.fd 2004/03/02 Fontinst v1.926 font definitions for T1/futs.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 51.
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 25.
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 Missing character: There is no ’ in font futr8t!
-LaTeX Font Info:    Try loading font information for FML+futmi on input line 51
+LaTeX Font Info:    Try loading font information for FML+futmi on input line 25
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/fmlfutmi.fd
 File: fmlfutmi.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futmi.
 )
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 13.24796pt on input line 51.
+(Font)              scaled to size 13.24796pt on input line 25.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 9.19998pt on input line 51.
+(Font)              scaled to size 9.19998pt on input line 25.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 7.35999pt on input line 51.
-LaTeX Font Info:    Try loading font information for U+msa on input line 51.
+(Font)              scaled to size 7.35999pt on input line 25.
+LaTeX Font Info:    Try loading font information for U+msa on input line 25.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 51.
+LaTeX Font Info:    Try loading font information for U+msb on input line 25.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 13.24796pt on input line 51.
+(Font)              scaled to size 13.24796pt on input line 25.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 9.19998pt on input line 51.
+(Font)              scaled to size 9.19998pt on input line 25.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 7.35999pt on input line 51.
+(Font)              scaled to size 7.35999pt on input line 25.
 File: images/p1.JPG Graphic file (type QTm)
 
 <use  "images/p1.JPG" >
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <12> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 66.
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 40.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 66.
+(Font)              scaled to size 11.03998pt on input line 40.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 66.
+(Font)              scaled to size 8.27998pt on input line 40.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 6.43999pt on input line 66.
+(Font)              scaled to size 6.43999pt on input line 40.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 66.
+(Font)              scaled to size 11.03998pt on input line 40.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 66.
+(Font)              scaled to size 8.27998pt on input line 40.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 6.43999pt on input line 66.
+(Font)              scaled to size 6.43999pt on input line 40.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 10.07397pt on input line 68.
+(Font)              scaled to size 10.07397pt on input line 42.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 7.63599pt on input line 68.
+(Font)              scaled to size 7.63599pt on input line 42.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 68.
+(Font)              scaled to size 5.51999pt on input line 42.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 10.07397pt on input line 68.
+(Font)              scaled to size 10.07397pt on input line 42.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 7.63599pt on input line 68.
+(Font)              scaled to size 7.63599pt on input line 42.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 68.
+(Font)              scaled to size 5.51999pt on input line 42.
  [1
 
 
@@ -698,14 +698,52 @@ Missing character: There is no ’ in font futr8t!
 Missing character: There is no ’ in font futr8t!
  [4]
 File: images/p5.JPG Graphic file (type QTm)
- <use  "images/p5.JPG" > [5] [6] (./main.aux) ) 
-Here is how much of TeX's memory you used:
- 8115 strings out of 493638
- 149840 string characters out of 6146795
- 294996 words of memory out of 5000000
- 11393 multiletter control sequences out of 15000+600000
- 108377 words of font info for 101 fonts, out of 8000000 for 9000
- 1328 hyphenation exceptions out of 8191
- 43i,19n,65p,589b,427s stack positions out of 5000i,500n,10000p,200000b,80000s
+ <use  "images/p5.JPG" >
+File: images/p6.JPG Graphic file (type QTm)
 
-Output written on main.pdf (6 pages).
+<use  "images/p6.JPG" >
+File: images/p7.jpg Graphic file (type QTm)
+ <use  "images/p7.jpg" > [5]
+File: images/p8.jpg Graphic file (type QTm)
+ <use  "images/p8.jpg" >
+File: images/p9.jpg Graphic file (type QTm)
+
+<use  "images/p9.jpg" > [6]
+LaTeX Font Info:    Try loading font information for TS1+futs on input line 228
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/fourier/ts1futs.fd
+File: ts1futs.fd 2004/03/26 Fontinst v1.926 font definitions for TS1/futs.
+)
+File: images/p10.jpg Graphic file (type QTm)
+
+<use  "images/p10.jpg" > [7]
+File: images/p12.jpg Graphic file (type QTm)
+ <use  "images/p12.jpg" >
+Underfull \hbox (badness 10000) in paragraph at lines 262--270
+
+ []
+
+[8]
+File: images/p11.jpg Graphic file (type QTm)
+ <use  "images/p11.jpg" >
+File: images/p13.jpg Graphic file (type QTm)
+ <use  "images/p13.jpg" >
+File: images/p14.jpg Graphic file (type QTm)
+ <use  "images/p14.jpg" >
+[9]
+File: images/p15.jpg Graphic file (type QTm)
+ <use  "images/p15.jpg" >
+Missing character: There is no “ in font futr8t!
+Missing character: There is no ” in font futr8t!
+ [10] (./main.aux) ) 
+Here is how much of TeX's memory you used:
+ 8165 strings out of 493638
+ 150499 string characters out of 6146795
+ 294996 words of memory out of 5000000
+ 11428 multiletter control sequences out of 15000+600000
+ 108699 words of font info for 102 fonts, out of 8000000 for 9000
+ 1328 hyphenation exceptions out of 8191
+ 42i,19n,65p,589b,427s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on main.pdf (10 pages).

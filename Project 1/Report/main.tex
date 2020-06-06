@@ -1,31 +1,5 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Wenneker Assignment
-% LaTeX Template
-% Version 2.0 (12/1/2019)
-%
-% This template originates from:
-% http://www.LaTeXTemplates.com
-%
-% Authors:
-% Vel (vel@LaTeXTemplates.com)
-% Frits Wenneker
-%
-% License:
-% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%----------------------------------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%----------------------------------------------------------------------------------------
-
 \documentclass[11pt]{scrartcl} % Font size
-
-\input{structure.tex} % Include the file specifying the document structure and custom commands
-
-%----------------------------------------------------------------------------------------
-%	TITLE SECTION
-%----------------------------------------------------------------------------------------
+\input{structure.tex}
 
 \title{	
 	\normalfont\normalsize
@@ -70,7 +44,7 @@ Let $\theta$ be the rotation angle of the principal axis, $m$ be the mass of a f
 The Maxwell torque linearized it to be
 \begin{equation}F\left(\dot{\theta}-V_{1}\right)\end{equation}
 By assuming that the velocity $\dot{\theta}$ varies within very narrow limits around the value $V_{1} .$ That is, by assuming
-%%%%%%%%%\begin{equation}\dot{\theta} \triangleq V_{1}+\dot{\theta}\end{equation}
+\begin{equation}\dot{\theta} = V_{1}+\Delta\dot{\theta}\end{equation}
 Then we have
 \begin{equation}F=4 r_{1}^{2} \mu m V_{1}\end{equation}
 The differential equation for the rotation $\theta$ of the principal axis is
@@ -78,9 +52,9 @@ The differential equation for the rotation $\theta$ of the principal axis is
 where $P$ is the driving torque; $R$ is the resisting torque; $G$ is a constant; $\psi$ is the rotation angle of the friction ring; and $M$ is the total moment of inertia of the principal axis, brake drum, and all the rotating parts with respect to the principal axis. From the free-body diagram in Figure $10(\mathrm{b})$ the equation of motion of the friction ring is
 \begin{equation}B \ddot{\psi}=F\left(\dot{\theta}-V_{1}\right)-Y \dot{\psi}-W\end{equation}
 
-\begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+\begin{figure}[h]
 	\centering
-	\includegraphics[width=0.5\columnwidth]{images/p2.JPG} % Example image
+	\includegraphics[width=0.5\columnwidth]{images/p2.JPG}
 	\caption{A free body diagram of Jenkin's Governor.}
 \end{figure}
 %----------------------------------------------------------------------------------------
@@ -159,27 +133,29 @@ E=\frac{1}{2} A \dot{\theta}^{2}+\frac{1}{2} B \dot{\phi}^{2}+P=\int L d \theta
 \end{equation}
 Where $P$ is the potential energy of the apparatus, which is a function of the divergence angle $\phi$ of the centrifugal piece. Here, $A$ and $B$ are both functions of the angle $\phi$. We can rearrange the equation:
 \begin{equation}
-\frac{d}{d t}(B \phi)=\frac{1}{2} A_{\phi}\left(\theta^{2}-V^{2}\right)+\frac{1}{2} B_{\phi} \phi^{2}
+\frac{d}{d t}(B \dot{\phi})=\frac{1}{2} A_{\phi}\left(\dot{\theta}^{2}-V^{2}\right)+\frac{1}{2} B_{\phi} \dot{\phi}^{2}
 \end{equation}
 By assuming:
-%%%%%\begin{equation} \theta \triangleq V+\omega, \quad \phi \triangleq \phi_{1}+\phi \end{equation}
+\begin{equation}
+\dot{\theta}= V+\omega, \quad \phi= \phi_{1}+\Delta\phi
+\end{equation}
 Also, the linear differential equations are:
 \begin{equation}
 \begin{array}{l}
-A \omega+A_{\phi} V \phi=L \\
-B \phi-A_{\phi} V \omega=0
+A \dot{\omega}+A_{\phi} V \dot{\phi}=L \\
+B \ddot{\phi}-A_{\phi} V \omega=0
 \end{array}
 \end{equation}
 To convert this apparatus into a governor, the equations become:
 \begin{equation}
-A \omega+X \omega+K \phi+G \phi=L
+A \dot{\omega}+X \omega+K \dot{\phi}+G \phi=L
 \end{equation}
 \begin{equation}
-B \phi+Y \phi-K \omega=0
+B \ddot{\phi}+Y \dot{\phi}-K \omega=0
 \end{equation}
 After model Linearization we have:
 \begin{equation}
-A B \phi+(A Y+B X) \phi+\left(X Y+K^{2}\right) \phi+G K \phi=L
+A B \ddot{\phi}+(A Y+B X) \ddot{\phi}+\left(X Y+K^{2}\right) \dot{\phi}+G K \phi=L
 \end{equation}
 So, the stability condition of equation is (confirmed by the Routh stability criterion):
 \begin{equation}
@@ -191,24 +167,141 @@ So, the stability condition of equation is (confirmed by the Routh stability cri
 	\caption{The centrifugal pieces (that is, flyballs) of Foucault’s governor.}
 \end{figure} \newpage
 \subsection{Draw a block diagram of the Governor control loop. Specify the actuator, controller input and controller output and name all signals.}
+According to these two equations, we present our loop model for Governor problem. 
+\begin{equation}M \ddot{\theta}=P-R-F\left(\dot{\theta}-V_{1}\right)-G \psi\end{equation}
+\begin{equation}B \ddot{\psi}=F\left(\dot{\theta}-V_{1}\right)-Y \dot{\psi}-W\end{equation}
+First, let's draw a general close loop control system with feedback:
 \begin{figure}[h] 
 	\centering
 	\includegraphics[width=0.8\columnwidth]{images/p5.JPG}
 	\caption{General close loop (feedback) control system.}
-\end{figure} \newpage
+\end{figure} 
+\newline We describe Governor control loop as follow:
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/p6.JPG}
+	\caption{Governor close loop control system.}
+\end{figure} 
+\newline Then, we implement our control loop in Simulink:
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=1\columnwidth]{images/p7.jpg}
+	\caption{Governor Simulink loop control.}
+\end{figure}\newpage 
 
-
-
+Our controller part is implemented as follow:
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.7\columnwidth]{images/p8.jpg}
+	\caption{Governor controller.}
+\end{figure} 
+\newline Our actuator part is implemented as follow:
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/p9.jpg}
+	\caption{Governor actuator.}
+\end{figure} 
+\newpage
 \subsection{Simulate the system using Simulink based on the model you have derived in the previous section. Choose reasonable values for your parameters and justify your choices in your report.}
+Maxwell obtained the stability condition that the real roots and the real parts of the complex conjugate roots of the characteristic equation $(1.12)$ must all be negative. He presented the stability condition as
+\begin{equation}
+\left(\frac{F}{M}+\frac{Y}{B}\right) \frac{Y}{B}-\frac{G}{B}=\text { positive value }
+\end{equation}
+
+Using Routh's array:
+\[
+\begin{array}{lc}
+s^{3}: M B & F Y \\
+s^{2}: M Y+F B & F G \\
+s: \frac{(M Y+F B) F Y-(M B)(F G)}{M Y+F B} & \\
+1: F G &
+\end{array}
+\]
+For stability, all elements of the first column of the Routh array must be positive.
+All coefficients in equation below must be positive:
+\begin{equation}
+M B s^{3}+(M Y+F B) s^{2}+F Y s+F G=0
+\end{equation}
+They are actually positive until parameters are physical values.
+According to the conditions above, we set our parameters as follow:
+\begin{itemize}
+  \item G = 10
+  \item R = 15
+  \item P = 18
+  \item B = 0.7
+  \item Y = 0.5
+  \item M = 0.05
+  \item F = 0.6
+  \item W = 0.01
+\end{itemize}
+According to physics of the problem, those parameters be chosen in order to test and tuning. We expect our model's result to converge to $V_1$ value.
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.7\columnwidth]{images/p10.jpg}
+	\caption{Output angular velocity diagram versus time(s).}
+\end{figure}
 \subsection{Identify the time constant of the system. Experiment with different values of $m, r, k .$ Explain the impact of the above-mentioned parameters on the system's performance. Justify your observations.}
+According to our equations in part 1, we presented connections between $m, r, k$ and $V_1, F$. Here we can relation between physical parameters and tuning parameters:
+\begin{equation}m r_{1} V_{1}^{2}=k\left(r_{1}-r_{0}\right)\end{equation}
+\begin{equation}
+F=4 r_{1}^{2} \mu m V_{1}
+\end{equation}
+
+From equation $(1.28)$ we can show that:
+
+\begin{equation}
+V_1 = \sqrt{\frac{K(r_1 - r_0)}{mr_1}}
+\end{equation}
+
+If we put $V_1$ from equation $(1.30)$ into equation $(1.29)$ we find that:
+
+\begin{equation}
+F = 4r_1^2\mu m\sqrt{\frac{K(r_1 - r_0)}{mr_1}}
+\end{equation}
+
+We see that F is changing with $m$ linearly, with $r$ polynomially and radicaly with $k$. All of these chages are in the same direction. Also Changing in $V_1$ only makes a difference in converging value. However, Changing in $F$ effects on converging time scale of the result. Here below  we investigate some change case in $F$ value:\\
+\newline
+Decrease $F$ to $0.4$:
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.6\columnwidth]{images/p12.jpg}
+	\caption{Output angular velocity diagram versus time(s), $F = 0.4$.}
+\end{figure}
+\newpage
+Decrease $F$ to $0.2$:
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.6\columnwidth]{images/p11.jpg}
+	\caption{Output angular velocity diagram versus time(s), $F = 0.2$.}
+\end{figure} \newline
+Increase $F$ to $1$:
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.55\columnwidth]{images/p13.jpg}
+	\caption{Output angular velocity diagram versus time(s), $F = 1$.}
+\end{figure}
+\newline Increase $F$ to $2$:
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.55\columnwidth]{images/p14.jpg}
+	\caption{Output angular velocity diagram versus time(s), $F = 2$.}
+\end{figure}
+\newpage Increase $V_1$ to $2$:
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.55\columnwidth]{images/p15.jpg}
+	\caption{Output angular velocity diagram versus time(s), $V_1 = 2$.}
+\end{figure}
 
 
-
-
-
-
-
-
+{\huge References:}
+\begin{enumerate}
+	\item J.C. MAXWELL, ON GOVERNORS, 1868
+	\item ChuL-GOO KANG, Origin of Stability Analysis: “On Governors” by J.C. Maxwell, 2016
+	\item Zhenhua Xu, Tuning method for governor control parameters of hydropower generator in isolated grid considering primary frequency performance, 2008
+	\item Richard Bellman,  Adaptive Control Processes: A Guided Tour, 2015
+	\item Richard Hills, Power From the Wind, 1996
+\end{enumerate}
 
 
 
