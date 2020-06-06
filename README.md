@@ -1,3 +1,3 @@
 # IndustrialControl
 
-Projects of Industrial Control Course, a bachelor course at Sharif University of Technology, Tehran.
+Projects of Industrial Control Course, an undergrad course at Sharif University of Technology, Tehran.
