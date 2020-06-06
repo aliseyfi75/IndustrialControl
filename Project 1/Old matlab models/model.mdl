@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.8"
+    ComputedModelVersion    "1.15"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -54,7 +54,7 @@ Model {
 	LoadSaveID		"0"
 	Extents			[1820.0, 869.0]
 	ZoomFactor		[1.25]
-	Offset			[-162.87861726277242, -179.21033958629818]
+	Offset			[-152.87861726277242, -151.74367291963142]
       }
     }
   }
@@ -64,9 +64,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "ali"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sat Jun 06 12:27:41 2020"
-  RTWModifiedTimeStamp	  513347261
-  ModelVersionFormat	  "1.%<AutoIncrement:8>"
+  LastModifiedDate	  "Sat Jun 06 15:54:18 2020"
+  RTWModifiedTimeStamp	  513359658
+  ModelVersionFormat	  "1.%<AutoIncrement:15>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -892,7 +892,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "67"
+    SIDHighWatermark	    "74"
     Block {
       BlockType		      Scope
       Name		      "\n"
@@ -951,8 +951,8 @@ Model {
       MaxDataPoints	      5000
       SaveToWorkspace	      off
       SaveName		      ScopeData1
-      YMin		      -1.27437
-      YMax		      14.93539
+      YMin		      -6.26211
+      YMax		      16.84154
       SampleInput	      off
       SampleTime	      -1
       ZoomMode		      on
@@ -998,12 +998,12 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"125"
+	ZoomFactor		"200"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In2"
 	  SID			  "56"
-	  Position		  [1120, 88, 1150, 102]
+	  Position		  [1105, 88, 1135, 102]
 	  ZOrder		  120
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
@@ -1013,7 +1013,7 @@ Model {
 	  BlockType		  Inport
 	  Name			  "In3"
 	  SID			  "57"
-	  Position		  [1295, 368, 1325, 382]
+	  Position		  [1040, 368, 1070, 382]
 	  ZOrder		  121
 	  BlockMirror		  on
 	  Port			  "2"
@@ -1049,7 +1049,7 @@ Model {
 	  BlockType		  Gain
 	  Name			  "Gain1"
 	  SID			  "33"
-	  Position		  [1135, 265, 1170, 295]
+	  Position		  [970, 265, 1005, 295]
 	  ZOrder		  116
 	  Gain			  "1/M"
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
@@ -1060,7 +1060,7 @@ Model {
 	  BlockType		  Gain
 	  Name			  "Gain2"
 	  SID			  "13"
-	  Position		  [980, 80, 1015, 110]
+	  Position		  [995, 80, 1030, 110]
 	  ZOrder		  102
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
@@ -1073,7 +1073,7 @@ Model {
 	  BlockType		  Gain
 	  Name			  "Gain4"
 	  SID			  "27"
-	  Position		  [1095, 360, 1140, 390]
+	  Position		  [965, 360, 1005, 390]
 	  ZOrder		  112
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
@@ -1086,7 +1086,7 @@ Model {
 	  BlockType		  Gain
 	  Name			  "Gain5"
 	  SID			  "28"
-	  Position		  [1060, 25, 1095, 55]
+	  Position		  [995, 25, 1030, 55]
 	  ZOrder		  113
 	  NamePlacement		  "alternate"
 	  Gain			  "1/B"
@@ -1126,7 +1126,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "Out1"
 	  SID			  "58"
-	  Position		  [1160, 33, 1190, 47]
+	  Position		  [1105, 33, 1135, 47]
 	  ZOrder		  122
 	  IconDisplay		  "Port number"
 	}
@@ -1134,7 +1134,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "Out2"
 	  SID			  "59"
-	  Position		  [1305, 273, 1335, 287]
+	  Position		  [1040, 273, 1070, 287]
 	  ZOrder		  123
 	  Port			  "2"
 	  IconDisplay		  "Port number"
@@ -1143,7 +1143,7 @@ Model {
 	  ZOrder		  32
 	  SrcBlock		  "Gain2"
 	  SrcPort		  1
-	  Points		  [-20, 0]
+	  Points		  [-35, 0]
 	  DstBlock		  "Sum1"
 	  DstPort		  3
 	}
@@ -1197,7 +1197,7 @@ Model {
 	  ZOrder		  94
 	  SrcBlock		  "Gain4"
 	  SrcPort		  1
-	  Points		  [-180, 0]
+	  Points		  [-50, 0]
 	  DstBlock		  "Sum2"
 	  DstPort		  3
 	}
@@ -1227,9 +1227,39 @@ Model {
 	  ZOrder		  117
 	  SrcBlock		  "Constant1"
 	  SrcPort		  1
-	  Points		  [70, 0; 0, -83]
+	  Points		  [55, 0; 0, -83]
 	  DstBlock		  "Sum2"
 	  DstPort		  2
+	}
+	Annotation {
+	  SID			  "70"
+	  Name			  "$F(V_1 - \\dot\\theta(t))$"
+	  Position		  [1089, 112, 1151, 138]
+	  ZOrder		  -17
+	}
+	Annotation {
+	  SID			  "71"
+	  Name			  "$\\dot\\Psi(t)$"
+	  Position		  [1041, 346, 1068, 362]
+	  ZOrder		  -18
+	}
+	Annotation {
+	  SID			  "72"
+	  Name			  "$\\Psi(t)$"
+	  Position		  [724, 171, 746, 187]
+	  ZOrder		  -19
+	}
+	Annotation {
+	  SID			  "73"
+	  Name			  "$\\ddot\\Psi(t)$"
+	  Position		  [1109, 10, 1131, 26]
+	  ZOrder		  -20
+	}
+	Annotation {
+	  SID			  "74"
+	  Name			  "$\\ddot\\theta(t)$"
+	  Position		  [1041, 248, 1068, 264]
+	  ZOrder		  -21
 	}
       }
     }
@@ -1264,7 +1294,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"125"
+	ZoomFactor		"500"
 	Block {
 	  BlockType		  Inport
 	  Name			  "\n\n"
@@ -1305,6 +1335,18 @@ Model {
 	  SrcPort		  1
 	  DstBlock		  "Gain"
 	  DstPort		  1
+	}
+	Annotation {
+	  SID			  "68"
+	  Name			  "$V_1 - \\dot\\theta(t)$"
+	  Position		  [14, 20, 56, 41]
+	  ZOrder		  -15
+	}
+	Annotation {
+	  SID			  "69"
+	  Name			  "$F(V_1 - \\dot\\theta(t))$"
+	  Position		  [174, 20, 236, 46]
+	  ZOrder		  -16
 	}
       }
     }
