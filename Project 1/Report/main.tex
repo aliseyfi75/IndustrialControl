@@ -29,17 +29,19 @@
 
 \title{	
 	\normalfont\normalsize
-	\textsc{University, School or Department Name}\\ % Your university, school and/or department name(s)
+	\textsc{Sharif University of Technology, Electrical Engineering Department}\\ % Your university, school and/or department name(s)
 	\vspace{25pt} % Whitespace
 	\rule{\linewidth}{0.5pt}\\ % Thin top horizontal rule
 	\vspace{20pt} % Whitespace
-	{\huge Assignment Title}\\ % The assignment title
+	{\huge Project 1: Jenkin’s Governor}\\ % The assignment title
 	\vspace{12pt} % Whitespace
 	\rule{\linewidth}{2pt}\\ % Thick bottom horizontal rule
 	\vspace{12pt} % Whitespace
 }
 
-\author{\LARGE Arthur Morgan} % Your name
+\author{\LARGE Ali Seifi \and \LARGE Vahid Ahmadi}
+ 
+
 
 \date{\normalsize\today} % Today's date (\today) or a custom date
 
@@ -51,174 +53,169 @@
 %	FIGURE EXAMPLE
 %----------------------------------------------------------------------------------------
 
-\section{Image Interpretation}
+\section{governor problem sets}
 
 \begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
 	\centering
-	\includegraphics[width=0.5\columnwidth]{swallow.jpg} % Example image
-	\caption{European swallow.}
+	\includegraphics[width=0.7\columnwidth]{images/p1.JPG} % Example image
+	\caption{Flyball Governor invented by James Watt in 1788.}
 \end{figure}
 
 %------------------------------------------------
 
-\subsection{What is the airspeed velocity of an unladen swallow?}
+\subsection{Derive the equations for $\psi$ and $\theta$ using the free body diagrams shown in Figure $1.2 .$ Combine these two to obtain the differential equation of velocity $w(\dot{\theta})$.}
 
-While this question leaves out the crucial element of the geographic origin of the swallow, according to Jonathan Corum, an unladen European swallow maintains a cruising airspeed velocity of \textbf{11 metres per second}, or \textbf{24 miles an hour}. The velocity of the corresponding African swallows requires further research as kinematic data is severely lacking for these species.
+Let $\theta$ be the rotation angle of the principal axis, $m$ be the mass of a flyball, $k$ be the spring constant, $r$ be the distance between the flyball and the center of the axis of rotation, and $V_{1}$ be the lowest limit of the angular velocity at which the friction ring starts to rotate. At the velocity $V_{1}$, the flyballs begin to rub against the inside of the friction ring, and the centrifugal force and spring force are balanced at this speed
+\begin{equation}m r_{1} V_{1}^{2}=k\left(r_{1}-r_{0}\right)\end{equation}
+The Maxwell torque linearized it to be
+\begin{equation}F\left(\dot{\theta}-V_{1}\right)\end{equation}
+By assuming that the velocity $\dot{\theta}$ varies within very narrow limits around the value $V_{1} .$ That is, by assuming
+%%%%%%%%%\begin{equation}\dot{\theta} \triangleq V_{1}+\dot{\theta}\end{equation}
+Then we have
+\begin{equation}F=4 r_{1}^{2} \mu m V_{1}\end{equation}
+The differential equation for the rotation $\theta$ of the principal axis is
+\begin{equation}M \ddot{\theta}=P-R-F\left(\dot{\theta}-V_{1}\right)-G \psi\end{equation}
+where $P$ is the driving torque; $R$ is the resisting torque; $G$ is a constant; $\psi$ is the rotation angle of the friction ring; and $M$ is the total moment of inertia of the principal axis, brake drum, and all the rotating parts with respect to the principal axis. From the free-body diagram in Figure $10(\mathrm{b})$ the equation of motion of the friction ring is
+\begin{equation}B \ddot{\psi}=F\left(\dot{\theta}-V_{1}\right)-Y \dot{\psi}-W\end{equation}
 
-%----------------------------------------------------------------------------------------
-%	TEXT EXAMPLE
-%----------------------------------------------------------------------------------------
-
-\section{Understanding Text}
-
-\subsection{How much wood would a woodchuck chuck if a woodchuck could chuck wood?}
-
-%------------------------------------------------
-
-\subsubsection{Suppose ``chuck" implies throwing.}
-
-According to the Associated Press (1988), a New York Fish and Wildlife technician named Richard Thomas calculated the volume of dirt in a typical 25--30 foot (7.6--9.1 m) long woodchuck burrow and had determined that if the woodchuck had moved an equivalent volume of wood, it could move ``about \textbf{700 pounds (320 kg)} on a good day, with the wind at his back".
-
-%------------------------------------------------
-
-\subsubsection{Suppose ``chuck" implies vomiting.}
-
-A woodchuck can ingest 361.92 cm\textsuperscript{3} (22.09 cu in) of wood per day. Assuming immediate expulsion on ingestion with a 5\% retainment rate, a woodchuck could chuck \textbf{343.82 cm\textsuperscript{3}} of wood per day.
-
-%------------------------------------------------
-
-\paragraph{Bonus: suppose there is no woodchuck.}
-
-Fusce varius orci ac magna dapibus porttitor. In tempor leo a neque bibendum sollicitudin. Nulla pretium fermentum nisi, eget sodales magna facilisis eu. Praesent aliquet nulla ut bibendum lacinia. Donec vel mauris vulputate, commodo ligula ut, egestas orci. Suspendisse commodo odio sed hendrerit lobortis. Donec finibus eros erat, vel ornare enim mattis et.
-
-%----------------------------------------------------------------------------------------
-%	EQUATION EXAMPLES
+\begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+	\centering
+	\includegraphics[width=0.5\columnwidth]{images/p2.JPG} % Example image
+	\caption{A free body diagram of Jenkin's Governor.}
+\end{figure}
 %----------------------------------------------------------------------------------------
 
-\section{Interpreting Equations}
+\subsection{Linearize your model assuming that the velocity $\dot{\theta}$ varies within very narrow bound around the $V 1$ That is, by assuming $\dot{\theta}=V 1+\Delta \dot{\theta}$.}
 
-\subsection{Identify the author of Equation \ref{eq:bayes} below and briefly describe it in English.}
+where $B$ is the total moment of inertia of the friction ring and the attached parts, $Y$ is a coefficient corresponding to viscous friction torque due to the hydraulic cylinder, and $W$ is a constant torque acting on the friction ring owing to the weight. Equations of motion derived by Maxwell, except that Maxwell called $\theta$ and $\psi, x$ and $y,$ respectively. Linear differential equation that is third order in the velocity $\omega(=\dot{\theta})$ is 
+\begin{equation}
+M B \ddot{\omega}+(M Y+F B) \ddot{\omega}+F Y \dot{\omega}+F G \omega=u(t)
+\end{equation}
+Where input $u(t)$ is
+\begin{equation}
+u(t)=B(\ddot{P}-\ddot{R})+Y(\dot{P}-\dot{R})+G F V_{1}+G W
+\end{equation}
+For constant $P$ and $R,$ Maxwell obtained a solution of the form
+\begin{equation}
+\omega(t)=A_{1} e^{s_{1} t}+A_{2} e^{s_{2} t}+A_{3} e^{s_{3} t}+V
+\end{equation}
+Where $V$ is the nominal velocity given by
+\begin{equation}
+V=V_{1}+W / F
+\end{equation}
+At the steady state we have
+\begin{equation}
+G F V=G F V_{1}+G W
+\end{equation}
 
-\begin{align} 
-	\label{eq:bayes}
-	\begin{split}
-		P(A|B) = \frac{P(B|A)P(A)}{P(B)}
-	\end{split}					
-\end{align}
+\subsection{Find the stability condition for the model you have derived in the previous section using Routh's array, explain how system parameters affect the stability.}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porttitor arcu luctus, imperdiet urna iaculis, mattis eros. Pellentesque iaculis odio vel nisl ullamcorper, nec faucibus ipsum molestie. Sed dictum nisl non aliquet porttitor. Etiam vulputate arcu dignissim, finibus sem et, viverra nisl. Aenean luctus congue massa, ut laoreet metus ornare in. Nunc fermentum nisi imperdiet lectus tincidunt vestibulum at ac elit. Nulla mattis nisl eu malesuada suscipit.
+$s_{1}, s_{2}, s_{3}$ are the roots of the cubic characteristic equation
+\begin{equation}
+M B s^{3}+(M Y+F B) s^{2}+F Y s+F G=0
+\end{equation}
+Maxwell obtained the stability condition that the real roots and the real parts of the complex conjugate roots of the characteristic equation $(1.12)$ must all be negative. He presented the stability condition as
+\begin{equation}
+\left(\frac{F}{M}+\frac{Y}{B}\right) \frac{Y}{B}-\frac{G}{B}=\text { positive value }
+\end{equation}
 
-%------------------------------------------------
+Using Routh's array:
+\[
+\begin{array}{lc}
+s^{3}: M B & F Y \\
+s^{2}: M Y+F B & F G \\
+s: \frac{(M Y+F B) F Y-(M B)(F G)}{M Y+F B} & \\
+1: F G &
+\end{array}
+\]
+For stability, all elements of the first column of the Routh array must be positive.
+All coefficients in equation below must be positive:
+\begin{equation}
+M B s^{3}+(M Y+F B) s^{2}+F Y s+F G=0
+\end{equation}
+They are actually positive until parameters are physical values.
 
-\subsection{Try to make sense of some more equations.}
-
-\begin{align} 
-	\begin{split}
-		(x+y)^3 &= (x+y)^2(x+y)\\
-		&=(x^2+2xy+y^2)(x+y)\\
-		&=(x^3+2x^2y+xy^2) + (x^2y+2xy^2+y^3)\\
-		&=x^3+3x^2y+3xy^2+y^3
-	\end{split}					
-\end{align}
-
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
-\begin{align}
-	A = 
-	\begin{bmatrix}
-		A_{11} & A_{21} \\
-		A_{21} & A_{22}
-	\end{bmatrix}
-\end{align}
-Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-
-%----------------------------------------------------------------------------------------
-%	LIST EXAMPLES
-%----------------------------------------------------------------------------------------
-
-\section{Viewing Lists}
-
-\subsection{Bullet Point List}
-
-\begin{itemize}
-	\item First item in a list 
-		\begin{itemize}
-		\item First item in a list 
-			\begin{itemize}
-			\item First item in a list 
-			\item Second item in a list 
-			\end{itemize}
-		\item Second item in a list 
-		\end{itemize}
-	\item Second item in a list 
-\end{itemize}
-
-%------------------------------------------------
-
-\subsection{Numbered List}
-
+\subsection{In Jenkin's governor the centrifugal piece is at a constant distance from the axis of rotation. However, there are other kinds of governor in which the centrifugal piece is free to move from the axis of rotation but is balanced by a centrifugal force and the force of gravity (or by the spring force, in some cases).\newline
+$(a) .$ Name an example of this alternative type of Governor system.\newline
+$(b) .$ Explain how this difference can affect the stability conditions of the system.}
+$(a) .$ 
 \begin{enumerate}
-	\item First item in a list 
-	\item Second item in a list 
-	\item Third item in a list
+	\item Sir William Thomson and Léon Foucault governor model.
+	\item Watt's Centrifugal Governor model Figure $1.3 $. 
 \end{enumerate}
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.3\columnwidth]{images/p3.JPG} 
+	\caption{Watt's Centrifugal Governor.}
+\end{figure}
+$(b) .$ \newline
+Let’s solve for a famous example model: Sir William Thomson and Léon Foucault governor model. Maxwell expressed the equations of motion using the angular momentum $A \dot{\theta}$
+\begin{equation}
+\frac{d}{d t}(A \dot{\theta})=L
+\end{equation}
+Where $\theta$ is the angle of revolution about the vertical axis, $A$ is the moment of inertia of a revolving apparatus for $\theta$ motion, and $L$ is the total torque acting on the axis. Let $B$ be the moment of inertia of the flyballs in Figure $1.4 $ for $\phi$ motion. Then, the sum of the kinetic and potential energies of Foucault's governor is
+\begin{equation}
+E=\frac{1}{2} A \dot{\theta}^{2}+\frac{1}{2} B \dot{\phi}^{2}+P=\int L d \theta
+\end{equation}
+Where $P$ is the potential energy of the apparatus, which is a function of the divergence angle $\phi$ of the centrifugal piece. Here, $A$ and $B$ are both functions of the angle $\phi$. We can rearrange the equation:
+\begin{equation}
+\frac{d}{d t}(B \phi)=\frac{1}{2} A_{\phi}\left(\theta^{2}-V^{2}\right)+\frac{1}{2} B_{\phi} \phi^{2}
+\end{equation}
+By assuming:
+%%%%%\begin{equation} \theta \triangleq V+\omega, \quad \phi \triangleq \phi_{1}+\phi \end{equation}
+Also, the linear differential equations are:
+\begin{equation}
+\begin{array}{l}
+A \omega+A_{\phi} V \phi=L \\
+B \phi-A_{\phi} V \omega=0
+\end{array}
+\end{equation}
+To convert this apparatus into a governor, the equations become:
+\begin{equation}
+A \omega+X \omega+K \phi+G \phi=L
+\end{equation}
+\begin{equation}
+B \phi+Y \phi-K \omega=0
+\end{equation}
+After model Linearization we have:
+\begin{equation}
+A B \phi+(A Y+B X) \phi+\left(X Y+K^{2}\right) \phi+G K \phi=L
+\end{equation}
+So, the stability condition of equation is (confirmed by the Routh stability criterion):
+\begin{equation}
+\left(\frac{X}{A}+\frac{Y}{B}\right)\left(X Y+K^{2}\right)>G K
+\end{equation}
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.5\columnwidth]{images/p4.JPG}
+	\caption{The centrifugal pieces (that is, flyballs) of Foucault’s governor.}
+\end{figure} \newpage
+\subsection{Draw a block diagram of the Governor control loop. Specify the actuator, controller input and controller output and name all signals.}
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/p5.JPG}
+	\caption{General close loop (feedback) control system.}
+\end{figure} \newpage
 
-%----------------------------------------------------------------------------------------
-%	TABLE EXAMPLE
-%----------------------------------------------------------------------------------------
 
-\section{Interpreting a Table}
 
-\begin{table}[h] % [h] forces the table to be output where it is defined in the code (it suppresses floating)
-	\centering % Centre the table
-	\begin{tabular}{l l l}
-		\toprule
-		\textit{Per 50g} & \textbf{Pork} & \textbf{Soy} \\
-		\midrule
-		Energy & 760kJ & 538kJ\\
-		Protein & 7.0g & 9.3g\\
-		Carbohydrate & 0.0g & 4.9g\\
-		Fat & 16.8g & 9.1g\\
-		Sodium & 0.4g & 0.4g\\
-		Fibre & 0.0g & 1.4g\\
-		\bottomrule
-	\end{tabular}
-	\caption{Sausage nutrition.}
-\end{table}
+\subsection{Simulate the system using Simulink based on the model you have derived in the previous section. Choose reasonable values for your parameters and justify your choices in your report.}
+\subsection{Identify the time constant of the system. Experiment with different values of $m, r, k .$ Explain the impact of the above-mentioned parameters on the system's performance. Justify your observations.}
 
-%------------------------------------------------
 
-\subsection{The table above shows the nutritional consistencies of two sausage types. Explain their relative differences given what you know about daily adult nutritional recommendations.}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porttitor arcu luctus, imperdiet urna iaculis, mattis eros. Pellentesque iaculis odio vel nisl ullamcorper, nec faucibus ipsum molestie. Sed dictum nisl non aliquet porttitor. Etiam vulputate arcu dignissim, finibus sem et, viverra nisl. Aenean luctus congue massa, ut laoreet metus ornare in. Nunc fermentum nisi imperdiet lectus tincidunt vestibulum at ac elit. Nulla mattis nisl eu malesuada suscipit.
 
-%----------------------------------------------------------------------------------------
-%	CODE LISTING EXAMPLE
-%----------------------------------------------------------------------------------------
 
-\section{Reading a Code Listing}
 
-\lstinputlisting[
-	caption=Luftballons Perl Script., % Caption above the listing
-	label=lst:luftballons, % Label for referencing this listing
-	language=Perl, % Use Perl functions/syntax highlighting
-	frame=single, % Frame around the code listing
-	showstringspaces=false, % Don't put marks in string spaces
-	numbers=left, % Line numbers on left
-	numberstyle=\tiny, % Line numbers styling
-	]{luftballons.pl}
 
-%------------------------------------------------
 
-\subsection{How many luftballons will be output by the Listing \ref{lst:luftballons} above?}
 
-Aliquam arcu turpis, ultrices sed luctus ac, vehicula id metus. Morbi eu feugiat velit, et tempus augue. Proin ac mattis tortor. Donec tincidunt, ante rhoncus luctus semper, arcu lorem lobortis justo, nec convallis ante quam quis lectus. Aenean tincidunt sodales massa, et hendrerit tellus mattis ac. Sed non pretium nibh. Donec cursus maximus luctus. Vivamus lobortis eros et massa porta porttitor.
 
-%------------------------------------------------
 
-\subsection{Identify the regular expression in Listing \ref{lst:luftballons} and explain how it relates to the anti-war sentiments found in the rest of the script.}
 
-Fusce varius orci ac magna dapibus porttitor. In tempor leo a neque bibendum sollicitudin. Nulla pretium fermentum nisi, eget sodales magna facilisis eu. Praesent aliquet nulla ut bibendum lacinia. Donec vel mauris vulputate, commodo ligula ut, egestas orci. Suspendisse commodo odio sed hendrerit lobortis. Donec finibus eros erat, vel ornare enim mattis et.
 
-%----------------------------------------------------------------------------------------
+
+
+
 
 \end{document}
