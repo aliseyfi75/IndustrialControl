@@ -1,0 +1,430 @@
+\documentclass[11pt]{scrartcl} % Font size
+\usepackage{float}
+\input{structure.tex}
+\title{	
+	\normalfont\normalsize
+	\textsc{Sharif University of Technology, Electrical Engineering Department}\\ % Your university, school and/or department name(s)
+	\vspace{25pt} % Whitespace
+	\rule{\linewidth}{0.5pt}\\ % Thin top horizontal rule
+	\vspace{20pt} % Whitespace
+	{\huge Project 3: Recursive Least Square Estimation}\\ % The assignment title
+	\vspace{12pt} % Whitespace
+	\rule{\linewidth}{2pt}\\ % Thick bottom horizontal rule
+	\vspace{12pt} % Whitespace
+}
+\author{\LARGE Ali Seyfi \and \LARGE Vahid Ahmadi}
+\date{\normalsize\today} 
+\begin{document}
+\maketitle
+%---------------------------------------------------------------------------
+
+\begin{itemize}
+
+\item The system is based on this student number: 94105569\\
+\item All the processes are in 1000 seconds and the step input has 100 seconds time delay.\\
+\item For the second and third input, the gain is: -0.15.\\
+\item In all sections, in the figures that have both blue and red graphs, blue graphs are system response and red graphs are our model response.\\
+
+\end{itemize}\\
+
+\section{Least Square Estimation}\\
+\subsection{Determine what is a suitable sample time for this system. Fully explain the reasons behind your choice
+(you may use information you previously gained about the system).}
+\renewcommand\labelitemi{$\square$}\\
+
+
+According to the result of previous project, we determine that the appropriate sample time should be around \textbf{1 sample per second} for our system. if you put the sample time a small value, noise spoils the result. Conversely if you consider a big value for sample time, the accuracy of your model will be decreased. Also we have learned some methods to calculate the best sample time in Digital Control course which were helpful.\\
+
+In the next pages, the inputs and also system's response to each input are plotted.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/37.JPG}
+	\caption{step input}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/36.JPG}
+	\caption{System output with step input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/38.JPG}
+	\caption{zero mean unit variance normal noise input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/39.JPG}
+	\caption{System output  with  first input}
+\end{figure}\\
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/310.JPG}
+	\caption{second input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/311.JPG}
+	\caption{System output with second input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/312.JPG}
+	\caption{third input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/313.JPG}
+	\caption{System output with third input}
+\end{figure}\\
+
+%---------------------------------------------------------------------------
+\subsection{Derive a discrete model structure for a FOTD model.}
+The continuous time FOTD transfer function is described as follows:
+\begin{equation}P(s)=\frac{K}{T s+1} e^{-L s}\end{equation}
+where $K$ is the gain, $T$ is the time constant, and $L$ is the dead time. In this project, the discrete model is designed with sampling interval $T_s$, and hence, the continuous time model is expressed as follows:
+\begin{equation}P_{d}\left(z^{-1}\right)=\frac{b_{0}+b_{1} z^{-1}}{1-a_{1} z^{-1}} z^{-(d+1)}\end{equation}
+where $a_1$, $b_0$, and $b_1$ are the coefﬁcient parameters, $d$ is the dead-time in the discrete time, and $z^{-1}$ denotes the backward shift operator. The discrete time plant parameters correspond to the continuous time plant parameters as follows:
+\begin{equation}\begin{aligned}
+a_{1} &=e^{-\frac{T_{s}}{T}} \\
+b_{0} &=K\left(1-a_{1} e^{\frac{L_{0}}{T}}\right) \\
+b_{1} &=K\left(a_{1} e^{\frac{L_{0}}{T}}-a_{1}\right) \\
+d &=L_{1}
+\end{aligned}\end{equation}
+where a non-negative integer $L_1$ satisﬁes the following equation:
+\begin{equation}L=L_{1} T_{s}+L_{0}\left(L_{0}<T_{s}\right)\end{equation}
+Therefore, the input/output relationship in discrete time is given as follows:
+\begin{equation}y(k)=P_{d}\left(z^{-1}\right) u(k)\end{equation}
+where $y(k)$ is the system output (plant output) and $u(k)$ is the control input.
+%---------------------------------------------------------------------------
+\subsection{Using standard least squares, obtain a least squares estimate of the parameters of the model using
+each on the above inputs.}
+According to the previous part, our model should be:
+\begin{equation}y(k)=\frac{b_{0}+b_{1} z^{-1}}{1-a_{1} z^{-1}} z^{-(d+1)} u(k)\end{equation}
+With simplifying our equation we have:
+\begin{equation}y(k)-a_{1} y(k-1)=b_{0} u(k-(d+1))+b_{1} u(k-(d+1)-1)\end{equation}
+\begin{equation}y(k)=a_{1} y(k-1)+b_{0} u(k-(d+1))+b_{1} u(k-(d+2))\end{equation}
+\begin{equation}y(k)=[y(k-1) \quad u(k-(d+1)) \quad u(k-(d+2))] \left[\begin{array}{l}
+a_{1} \\
+b_{0} \\
+b_{1}
+\end{array}\right]\end{equation}
+
+We define:
+
+\begin{equation}x(k)=[y(k-1) \quad u(k-(d+1)) \quad u(k-(d+2))] \end{equation}
+
+Then if we make a vector of $y(k)$s, we will have:
+
+\begin{equation}Y=\left[\begin{array}{l}
+y(d+3) \\
+\quad ... \\
+\quad y(n)
+\end{array}\right]\end{equation}
+
+Also we can make the matrix $X$, repeating (1.10) for each sample:
+
+\begin{equation}X=\left[\begin{array}{l}
+y(d+1) \quad \quad u(1) \quad \quad u(0) \\
+\quad \quad \quad \quad \quad \quad ... \\
+y(n) \quad u(n-d) \quad u(n-d-1)
+\end{array}\right]\end{equation}
+
+
+So our the LS solution will be:
+\begin{equation}\hat{\theta}=\left(X^{\top} X\right)^{-1} X^{\top} Y\end{equation}
+
+
+\begin{equation}
+\hat{\theta}=\left[\begin{array}{l}
+a_{1} \\
+b_{0} \\
+b_{1}
+\end{array}\right]
+\end{equation}
+If we consider $d = 170$, using (1.13), we will have:
+\begin{equation}
+\hat{\theta}=\left[\begin{array}{l}
++0.9890 \\
++0.6879 \\
+-1.2497
+\end{array}\right]
+\end{equation}
+Having $a_1, b_0$ and $b_1$, using (1.3), we can have our model's parameters:
+\begin{equation}k=39.889\end{equation}
+\begin{equation}L=167.086\end{equation}
+\begin{equation}T=90.522\end{equation}
+Using the parameters we get in the last part, Our FOTD model will be:
+\begin{equation}P(s)_{LS}=\frac{39.889}{90.522 s+1} e^{-167.086 s}\end{equation}
+We think we achieve a good model because with comparison with results in project 2, the errors decrease:
+\begin{equation}ISE=1513\end{equation}
+\begin{equation}IAE=701\end{equation}
+\begin{equation}MaxError=3.95\end{equation}
+
+In the following you will see the figures with system(blue) and model(red) responses for different inputs. As you can see in the results, our model could estimate the system very well.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/35.JPG}
+	\caption{System output (blue) and LS model (red) output with step input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/314.JPG}
+	\caption{System output and LS model output with first input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/315.JPG}
+	\caption{System output and LS model output with second input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/316.JPG}
+	\caption{System output and LS model output with third input}
+\end{figure}\\
+%---------------------------------------------------------------------------
+\subsection{Using the RLS algorithm, obtain a least squares estimate of the parameters of the model using each on the above inputs. In each case you need to preset a time graph which shows the estimate of the model parameters at each sample time.}
+We should follow these steps:\\
+1. Calculate $x_{t+1}$ first. For this calculation we just put $k=t+1$:
+\begin{equation}
+x(t+1)^{T}=[y(t) \quad u(t-d) \quad u(t-(d+1)]
+\end{equation}\\
+2. Then we should calculate the error. Pay attention that in each iteration $\hat{\theta}$ is obtained from previous iteration.
+\begin{equation}e(t+1)=y(t+1)-x^{T}(t+1) \hat{\theta}(t)\end{equation}\\
+3. After that we calculate $P_{t}$ in each iteration with this formula:
+\begin{equation}P(t+1)=P(t)\left[I_{m}-\frac{x(t+1) x^{\top}(t+1) P(t)}{1+x^{\top}(t+1) P(t) x(t+1)}\right]\end{equation}\\
+4. In the last step we update $\hat{\theta}$ with an update term plus previous $\hat{\theta}$ data:
+\begin{equation}\hat{\theta}(t+1)=\hat{\theta}(t)+P(t+1) x(t+1) e(t+1)\end{equation}
+
+If we consider $d = 170$ and repeat 4 steps iteratively, we will have:
+
+\begin{equation}
+\hat{\theta}=\left[\begin{array}{l}
++0.9884 \\
++0.7225 \\
+-0.2597
+\end{array}\right]
+\end{equation}
+
+And again, by having $a_1, b_0$ and $b_1$, using (1.3), we can have our model's parameters:
+
+\begin{equation}k=39.976\end{equation}
+\begin{equation}L=169.434\end{equation}
+\begin{equation}T=85.871\end{equation}
+And using these parameters, our FOTD model will be:
+\begin{equation}P(s)_{RLS}=\frac{39.976}{85.871 s+1} e^{-169.434 s}\end{equation}
+We think we achieve a good model because with comparison with results in project 2, the errors decrease. Even better than LS model!
+\begin{equation}ISE=1163\end{equation}
+\begin{equation}IAE=614\end{equation}
+\begin{equation}MaxError=3.31\end{equation}
+\textbf{For a step input} you can see how $\hat{\theta}$ parameter changes through the time, error between system and RLS model through the time and also output of both system and RLS model for it. Strange shape of the error through the time is for noise of the system. Also for all of the three input which are mentioned in the project we do the same process and you can see the results.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/318.JPG}
+	\caption{parameter changes through the time for a step input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/319.JPG}
+	\caption{error between system and RLS model through the time for a step input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/320.JPG}
+	\caption{output of both system and RLS model for a step input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/321.JPG}
+	\caption{parameter changes through the time for first input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/322.JPG}
+	\caption{error between system and RLS model through the time for first input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/323.JPG}
+	\caption{output of both system and RLS model for first input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/324.JPG}
+	\caption{parameter changes through the time for second input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/325.JPG}
+	\caption{error between system and RLS model through the time for second input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/326.JPG}
+	\caption{output of both system and RLS model for second input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/327.JPG}
+	\caption{parameter changes through the time for third input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/328.JPG}
+	\caption{error between system and RLS model through the time for third input}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/329.JPG}
+	\caption{output of both system and RLS model for third input}
+\end{figure}\\
+%---------------------------------------------------------------------------
+\subsection{Present a detailed discussion on the effect of the input on the performance of the RLS algorithm. Your analysis should;\\
+1. Include an analysis of the estimation residuals including a statistical analysis (covariance).\\
+2. Contain suitable graphical means to display the results of your analysis.\\
+3. Contain a discussion on whether the observations are inline with your expectations.}\\
+
+1. We know that:
+\begin{equation}Cov(\hat{\theta})=\sigma_e^2\mathop{\mathbb{E}}_x[(X^TX)^{-1}]\end{equation}\\
+
+so from this equation we can estimate our residual.\\
+
+
+2. For this part, you can look at the Figure 1.18. Where $\sigma_e^2 = 1$ and\\ $\mathop{\mathbb{E}}_x[(X^TX)^{-1}] = \left[\begin{array}{l}
+0.0000 \quad -0.0008 \quad -0.0003 \\
+-0.0008 \quad 1.0233 \quad -0.9917 \\
+-0.0003 \quad -0.9917 \quad 1.0043
+\end{array}\right]$. So from (1.35), we can figure out that the covariance of our $\hat{\theta}$ is equal to $\left[\begin{array}{l}
+0.0000 \quad -0.0008 \quad -0.0003 \\
+-0.0008 \quad 1.0233 \quad -0.9917 \\
+-0.0003 \quad -0.9917 \quad 1.0043
+\end{array}\right]$\\
+
+
+3. As we compute the variance of our $\hat{\theta}$, we obtain an almost similar result which was inline with our expectations from theory.
+%---------------------------------------------------------------------------
+\subsection{By experimenting with different initial values for P and $\hat{\theta}$, discuss the impact of the initial conditions
+on the speed of convergence and the accuracy of the estimate. You need to find a suitable means of displaying your results. What can you conclude from your observations?}
+
+According to the results here, if we change initial vector of $\hat{\theta}$, there will be no difference in the results, because after a little time, they converge to the same vector and it does not matter from what vector of $\hat{\theta}$ you start (but not strange initial point!).\\
+
+
+Conversely, the initial matrix of $P$ is important for your accuracy and also speed of the convergence. If you choose smaller initial values for $P$ indices, $\hat{\theta}$ will convergence slowly, but if you choose larger initial values for $P$ indices, $\hat{\theta}$ will convergence faster. For obtaining a good accuracy you have to choose a good initial vector for $\hat{\theta}$ and a good initial matrix for $P$. Their initial values are depend on the system and you should set them by experimenting with different initial values.\\
+
+
+By our observations we can conclude that if you set initial values near to the final values of the $P$ and $\hat{\theta}$, it would be better. But it depends on your situation and also your budget maybe! We put 1 for both initial values in our model. \\
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\columnwidth]{images/330.JPG}
+	\caption{step input - initial $P = \left[\begin{array}{l}
+0.5 \quad 0 \quad 0 \\
+0 \quad 0.5 \quad 0\\
+0 \quad 0 \quad 0.5
+\end{array}\right]$}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\columnwidth]{images/331.JPG}
+	\caption{step input - initial $P = \left[\begin{array}{l}
+1 \quad 0 \quad 0 \\
+0 \quad 1 \quad 0\\
+0 \quad 0 \quad 1
+\end{array}\right]$}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\columnwidth]{images/332.JPG}
+	\caption{step input - initial $P = \left[\begin{array}{l}
+2 \quad 0 \quad 0 \\
+0 \quad 2 \quad 0\\
+0 \quad 0 \quad 2
+\end{array}\right]$}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\columnwidth]{images/333.JPG}
+	\caption{step input - initial $\theta = \left[\begin{array}{l}
+0.5 \\
+0.5 \\
+0.5 
+\end{array}\right]$}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\columnwidth]{images/334.JPG}
+	\caption{step input - initial $\theta = \left[\begin{array}{l}
+1 \\
+1 \\
+1 
+\end{array}\right]$}
+\end{figure}\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\columnwidth]{images/335.JPG}
+	\caption{step input - initial $\theta = \left[\begin{array}{l}
+2 \\
+2 \\
+2 
+\end{array}\right]$}
+\end{figure}\\
+%---------------------------------------------------------------------------
+\subsection{Show mathematically, if the results of the LS and the RLS algorithms should be the same? Use the
+LS and RLS models you found to verify your prediction.}
+\\
+
+In the LS method, our problem is actually finding the minimum of a degree two function. In RLS method, we use an iterative approach to find the minimum. If the cost function which we want to minimize it, had several minimums, our RLS approach could go and stuck in that minimun. But as our cost function have only one minimum, the result of LS and RLS methods should be same. As we can see in the following the systems that these systems give us are almost the same.
+
+%---------------------------------------------------------------------------
+\subsection{Compare the computational CPU and Memory resources required to calculated the LS and the RLS
+models.}
+
+\\
+
+Memory resources:\\ 
+
+In LS method, As we store all the input and output vectors and their delay vectors, We have a $(1000-d)*1$ vector for storing $Y$ values, and a $(1000-d)*3$ vector to store $X$ values. In contrast, in RLS method we just store integers $e(t+1)$ and $y(t+1)$ ,and also matrix $P(t+1)$ which is $3*3$ and vectors $X(t+1)$ and $\theta(t+1)$ which are $3*1$. So if we compare these two method due to memory usage, the LS method uses memory more.\\
+
+
+
+Computational CPU:\\
+
+In LS method, we need to compute the inverse of matrix $X^TX$ which is a $3*3$ matrix and that is the most time consuming step of the algorithm. On the other hand, in RLS method, we have to compute $e$ and matrix $P$ and vector $\theta$ each time for each time samples. So if we want to compare two algorithms due to CPU usage, the RLS method uses CPU more.
+
+
+
+\newpage
+{\huge References:}
+\begin{enumerate}
+	\item Discrete-Time First-Order Plus Dead-TimeModel-Reference Trade-off PID Control Design - Ryo Kurokawa (2019)
+	\item PID Controllers, Theory, Design and Tuning (2nd Edition) - Åström, Karl
+\end{enumerate}
+\end{document}
