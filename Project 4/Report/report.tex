@@ -1,0 +1,497 @@
+\documentclass[11pt]{scrartcl} % Font size
+\usepackage{float}
+\input{structure.tex}
+\title{	
+	\normalfont\normalsize
+	\textsc{Sharif University of Technology, Electrical Engineering Department}\\ % Your university, school and/or department name(s)
+	\vspace{25pt} % Whitespace
+	\rule{\linewidth}{0.5pt}\\ % Thin top horizontal rule
+	\vspace{20pt} % Whitespace
+	{\huge Project 4: Use of describing function in prediction of limit-cycles}\\ % The assignment title
+	\vspace{12pt} % Whitespace
+	\rule{\linewidth}{2pt}\\ % Thick bottom horizontal rule
+	\vspace{12pt} % Whitespace
+}
+\author{\LARGE Ali Seyfi \and \LARGE Vahid Ahmadi}
+\date{\normalsize\today} 
+\begin{document}
+\maketitle
+%---------------------------------------------------------------------------
+\section{Prediction of limit-cycles}
+\subsection{Using Simulink, implement the closed-loop system described in the paper (without the relay).}
+The implementation of the closed-loop system described in the paper in Simulink is shown in the following figure:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/41.JPG}
+	\caption{Closed-loop system}
+\end{figure}
+%---------------------------------------------------------------------------
+\subsection{Determine the value of K which will cause marginal stability.}
+According to the source paper, system marginal stability occurs in $K=2$. However we examine it by observing the output for some different $K$ values. The closed-loop system output with $K=2$, $K=1.5$, and $K=2.5$ are shown in the next page. As we expect from the system characteristic, $K<2$ values will result in a damped sine wave and $K>2$ will result in growing sine wave and $K=2$ will result in a constant amplitude sine wave which is desired.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/42.JPG}
+	\caption{closed-loop system output with $K=2$}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/43.JPG}
+	\caption{closed-loop system output with $K=1.5$}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/44.JPG}
+	\caption{closed-loop system output with $K=2.5$}
+\end{figure}
+%---------------------------------------------------------------------------
+
+\subsection{Using Simulink, implement the closed-loop system described in the paper (this time with the relay). Set the gain to 1.6 and the relay characteristics as in Figure 3(b).}
+The implementation of the closed-loop system with the relay described in the paper in Simulink is shown in the following figure:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/45.JPG}
+	\caption{Closed-loop system with the relay}
+\end{figure}
+You can see the relay characteristics in the following:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/415.JPG}
+	\caption{sample relay input (red) and relay output (black)}
+\end{figure}
+%---------------------------------------------------------------------------
+\subsection{Use your Simulink model to produce the responses outlined in Figures 4(a-d).}
+It is just needed to observe the output at each step($a$ to $d$) in Closed-loop system with the relay:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/46.JPG}
+	\caption{Closed-loop system with the relay ordering of $a$ to $d$}
+\end{figure}
+The results are similar to paper responses and shown bellow:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/47.JPG}
+	\caption{Output of a - figure 4.a. in paper}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/48.JPG}
+	\caption{Output of b - figure 4.b. in paper}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/49.JPG}
+	\caption{Output of c - figure 4.c. in paper}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/410.JPG}
+	\caption{Output of d - figure 4.d. in paper}
+\end{figure}
+%---------------------------------------------------------------------------
+
+\subsection{Using describing function analysis predict the frequency and amplitude of the prevailing limit cycle. Conﬁrm the results of analysis by plotting the Nyquist diagram of the system and the Describing function. Compare the predicted theoretical value of the limit cycle with the actual values obtained from the Simulink simulation.}
+
+In order to do describing function analysis, we need the quasi-linear approximation of our nonlinear system (relay here). As the paper says and also we saw in the class, the quasi-linear approximation of a relay is:
+\begin{equation}
+    N(A,\omega) = N(A) = \frac{4M}{\pi A}
+\end{equation}
+
+where $M$ is the the output level of the relay.\\
+
+Now that we have $N(A)$, We can find $A$ and $\omega$, amplitude and frequency of the prevailing limit
+cycles, using the equation bellow:
+
+\begin{equation}
+    1 + G(j\omega)N(A,\omega) = 0
+\end{equation}
+
+We saw that $N(A,\omega) = N(A)$, so the equation then is:
+
+\begin{equation}
+    1 + G(j\omega)N(A) = 0
+\end{equation}
+
+Which is equivalent to:
+
+\begin{equation}
+    G(j\omega) = - \frac{1}{N(A)}
+\end{equation}
+
+On the other hand we have:
+
+\begin{equation}
+    G(s) = - \frac{K}{s(1+s)^2}
+\end{equation}
+
+Then $G(j\omega)$ will be:
+
+\begin{equation}
+    G(j\omega) = \frac{K}{(j\omega)(1+j\omega)^2} = \frac{K}{(j\omega - 2\omega ^2 - j\omega ^3)}
+\end{equation}
+
+So by using (1.1) and and (1.6) and put them in (1.4), we will have:
+
+\begin{equation}
+    \frac{K}{(j\omega - 2\omega ^2 - j\omega ^3)} = -\frac{\pi A}{4M}
+\end{equation}
+
+which will yield to :
+
+\begin{equation}
+    4KM = \pi A((j\omega - 2\omega ^2 - j\omega ^3))
+\end{equation}
+
+In the first look, we have one equation (1.8) and two variables ($A, \omega$). But we actually have two equations. The equation (1.8) is a complex equation and so both real part and imaginary part of two side should be equal. So we have actually these two equations:
+
+\begin{equation}
+    \omega ^3 - \omega = 0
+\end{equation}
+
+\begin{equation}
+    4KM = \pi A (2\omega ^2)
+\end{equation}
+
+which will give us three values for $\omega: 0, \pm 1$, so the frequency of the prevailing limit
+cycles is $1 \frac{rad}{sec}$.\\
+
+Then if we put $\omega = 1$, we will have:
+
+\begin{equation}
+    A = \frac{2KM}{\pi}
+\end{equation}
+
+And as we use a relay with $M = 5$ and the gain $K = 1.6$, the amplitude of the prevailing limit cycles will be:
+
+\begin{equation}
+    A = \frac{3.2*5}{\pi} = \frac{16}{\pi} \approx 5.09 
+\end{equation}\\
+
+In the second part, we draw the nyquist diagram of the system to see whether it is inline with the theory that we just derive or not. the nyquist diagram of the system is:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/nyquist.jpg}
+	\caption{nyquist diagram of the system}
+\end{figure}
+
+and if we zoom in in the part between 0 and 1 where the diagram cross the real axis, we will see that:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/nyquist2.jpg}
+	\caption{nyquist diagram of the system (Zoomed in)}
+\end{figure}
+
+and the nyquist diagram of the relay is a line going from the origin to minus infinity. So the intersection of the diagrams are in the point $-0.79$. Which is inline with our expectations.\\
+
+If we want to compare our results from Simulink with the theory that we just developed the result of our simulation with $K=1.6$ and $M=5$ is shown bellow:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/result1.jpg}
+	\caption{closed-loop system output with relay, K=1.6, and M=5}
+\end{figure}
+
+As you can see in the figure, our expectation about amplitude and frequency of our limit cycle is inline with the simulation result.
+%---------------------------------------------------------------------------
+
+\subsection{ In your simulation model, experiment with diﬀerence values for the set-point and determine if the value of the closed-loop set-point has any eﬀect of the frequency or amplitude of the prevailing limit cycles. Present the results of your experiments and state the conclusion from your observation. Does it match with your expectations?}
+In the following you can see the outputs regarding different values for the set-point:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/412.JPG}
+	\caption{outputs with diﬀerence values for the set-point}
+\end{figure}
+
+As we expect from the form of our equations, a change in the set-point, should not change the frequency or amplitude of the limit cycle. As we can see in the Figure 1.15, there is no change in frequency or amplitude as we increase or decrease the set-point, which is inline with our expectations.
+%---------------------------------------------------------------------------
+
+\subsection{In your simulation model, experiment with diﬀerence values for d (the dead-band width) and determine if the value of d has any eﬀect of the frequency or amplitude of the prevailing limit cycles. Present the results of your experiments and state the conclusion from your observation. Does it match with your expectations?}
+You can see the characteristic of a relay with dead-band width of 3 that we used in the following:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/411.JPG}
+	\caption{sample relay input (red) and relay output (black)}
+\end{figure}
+The relay with a dead-bond, is like a combination of a relay and a dead-zone block. by increasing the width of dead-zone, we should observe an increase in frequency and a decrease in amplitude. As you can see in the figure 1.17, the results of the simulation are completely inline with our expectations.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/414.JPG}
+	\caption{outputs with diﬀerence values for d}
+\end{figure}
+
+
+%---------------------------------------------------------------------------
+
+\subsection{ In your simulation model, experiment with diﬀerence values for M (the output level of the relay default is 5V) and determine if the value of M has any eﬀect of the frequency or amplitude of the prevailing limit cycles. Present the results of your experiments and state the conclusion from your observation. Does it match with your expectations?}
+
+In the following you can see the outputs of diﬀerent values for M:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/413.JPG}
+	\caption{outputs with diﬀerence values for M}
+\end{figure}
+
+As we saw in (1.9) and (1.10), the frequency of the limit cycle doesn't change with M, but the amplitude of the limit cycle has a linear dependency with M, which means if we double up M, the amplitude of the limit cycle will be doubled. As you can see in the Figure 1.18, the results of the simulation are inline with our expectations.
+%---------------------------------------------------------------------------
+
+\subsection{Change the transfer function of the system to $G(s)=\frac{1.6}{s(1+s)}$, ﬁrst using describing function analysis determine if there is going to be a limit cycle. Then using the simulink simulation, observe experimentally if there is a limit cycle. Do the theoretical and experimental results match? if not why? if yes why?}
+We implement the closed-loop system, this time with the transfer function $G(s)=\frac{1.6}{s(1+s)}$:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/1.JPG}
+	\caption{Closed-loop system}
+\end{figure}
+Here we can see the output result:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/2.JPG}
+	\caption{Closed-loop system output}
+\end{figure}
+If we go the same way we went in part 5, this time with $G(s)=\frac{1.6}{s(1+s)}$, we will have from (1.4):
+
+\begin{equation}
+    \frac{1.6}{(-\omega ^2 + j\omega)} = -\frac{\pi A}{4M}
+\end{equation}
+
+So $A$ and $\omega$ can be find from:
+
+\begin{equation}
+    6.4M = \pi A\omega ^2 - \pi A j\omega
+\end{equation}
+
+Then if we solve the imaginary part, we will have $\omega = 0$. Which means that we don't have a limit cycle.\\
+
+By simulating in Simulink, we didn't see a limit cycle, but as the paper says, there is a limit cycle with amplitude of 94 mV and period of 0.6s. The main reason that this conflict happens is that in the simulation, with a little distribution, the nyqusit figures will cross each other and create a limit cycle, which in theory does not exist.
+
+
+%---------------------------------------------------------------------------
+
+\subsection{Change the pure relay to a relay with hysteresis as in Figure 3(d). Repeat steps 3 to 9 in the same order. For step 7, replace d with h (the width of the hysteresis).}
+\renewcommand{\labelitemi}{$\blacksquare$}
+ \begin{itemize}
+   \item  part 3. Closed-loop system with the hysteresis relay described in the paper is implemented in this figure:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/4.JPG}
+	\caption{Closed-loop system with the hysteresis relay}
+\end{figure}
+The hysteresis relay in this part has switch on point at 5 and switch off point at -5. \\
+In the following you can see the output of closed-loop system with hysteresis relay:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/3.JPG}
+	\caption{system output with hysteresis relay}
+\end{figure}
+   \item  part 4. Again like section 4, we can see the middle outputs by plotting $a$ to $d$ signals in Closed-loop system with the hysteresis relay:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/46.JPG}
+	\caption{Closed-loop system with the hysteresis relay ordering of $a$ to $d$ with hysteresis relay}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/10a.JPG}
+	\caption{Signal a}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/10b.JPG}
+	\caption{Signal b}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/10c.JPG}
+	\caption{Signal c}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{images/10d.JPG}
+	\caption{Signal d}
+\end{figure}
+   \item part 5. Once again, in order to do describing function analysis, we need the quasi-linear approximation of our nonlinear system (relay with hysteresis here). As we saw in the class, the quasi-linear approximation of a relay with hysteresis is:
+\begin{equation}
+    N(A,\omega) = N(A) = \frac{4M}{\pi A} \sqrt{1-\alpha ^2} - j\frac{4M\alpha}{\pi A}
+\end{equation}
+
+where $\alpha = \frac{a}{A}$ in which $a$ is the dead-width of hysteresis and $M$ is the the output level of the relay.\\
+
+Now that we have $N(A)$, We can find $A$ and $\omega$, amplitude and frequency of the prevailing limit
+cycles, using the equation bellow:
+
+\begin{equation}
+    1 + G(j\omega)N(A,\omega) = 0
+\end{equation}
+
+We saw that $N(A,\omega) = N(A)$, so the equation then is:
+
+\begin{equation}
+    1 + G(j\omega)N(A) = 0
+\end{equation}
+
+Which is equivalent to:
+
+\begin{equation}
+    G(j\omega) = - \frac{1}{N(A)}
+\end{equation}
+
+On the other hand we have:
+
+\begin{equation}
+    G(s) = - \frac{K}{s(1+s)^2}
+\end{equation}
+
+Then $G(j\omega)$ will be:
+
+\begin{equation}
+    G(j\omega) = \frac{K}{(j\omega)(1+j\omega)^2} = \frac{K}{(j\omega - 2\omega ^2 - j\omega ^3)}
+\end{equation}
+
+So by using (1.15) and and (1.20) and put them in (1.18), we will have:
+
+\begin{equation}
+    \frac{(2\omega ^2 + j\omega ^3 - j\omega)}{K} = \frac{4M}{\pi A} \sqrt{1-\alpha ^2} - j\frac{4M\alpha}{\pi A}
+\end{equation}
+
+which will yield to :
+
+\begin{equation}
+    2\omega ^2 + j(\omega ^3-\omega) = \frac{4MK}{\pi A} \sqrt{1-\alpha ^2} - j\frac{4MK\alpha}{\pi A}
+\end{equation}
+
+Again, in the first look, we might think that we have one equation (1.22) and two variables ($A, \omega$). But with the same trick,we will have two equations. The equation (1.22) is a complex equation and so both real part and imaginary part of two side should be equal. So we have actually these two equations:
+
+\begin{equation}
+    \omega ^2 = \frac{2KM}{\pi A}\sqrt{1-\alpha ^2}
+\end{equation}
+
+\begin{equation}
+    \omega - \omega^3 = \frac{4KM\alpha}{\pi A}
+\end{equation}
+
+Now if we substitute $\alpha$ with $\frac{a}{A}$, we will get:
+
+\begin{equation}
+    \omega ^2 = \frac{2KM}{\pi A}\sqrt{\frac{A^2 - a^2}{A^2}} = \frac{2KM}{\pi A^2}\sqrt{A^2 - a^2}
+\end{equation}
+
+\begin{equation}
+    \omega - \omega^3 = \frac{4K M a}{\pi A^2}
+\end{equation}
+
+which will give us $\omega: 0.63$, so the frequency of the prevailing limit
+cycles is $0.63 \frac{rad}{sec}$.\\
+
+Then if we put $\omega = 0.63$ and as we use a relay with $M = 5$, $a=5$, and the gain $K = 1.6$, the amplitude of the prevailing limit cycles will be: $A = 11.58$\\
+
+
+In the second part, we draw the nyquist diagram of the system to see whether it is inline with the theory that we just derive or not. the nyquist diagram of the system is:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/nyquist.jpg}
+	\caption{nyquist diagram of the system}
+\end{figure}
+
+and if we zoom in in the part between 0 and 1 where the diagram cross the real axis, we will see that:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/nyquist2.jpg}
+	\caption{nyquist diagram of the system (Zoomed in)}
+\end{figure}
+
+If we draw the $N(A,w)$ for $A=11.58$, we will see that the figures will cross at the point that $\omega \approx 0.63$. Which is inline with our expectations.\\
+
+If we want to compare our results from Simulink with the theory that we just developed the result of our simulation with $K=1.6$, $M=5$, and $a=5$ is shown bellow:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/10d.JPG}
+	\caption{closed-loop system output with relay with hysteresis, K=1.6, M=5, and a=5}
+\end{figure}
+
+As you can see in the figure, our expectation about amplitude and frequency of our limit cycle is inline with the simulation result.\\
+
+\newpage
+
+
+\item part 6. with the hysteresis relay, here you can see the outputs of different values of the set-point:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/10.6.JPG}
+	\caption{outputs with diﬀerence values for the set-point}
+\end{figure}
+
+As we expect from the form our equations, a change in the set-point, should not change the frequency or amplitude of the limit cycle. As we can see in the Figure 1.31, there is no change in frequency or amplitude as we increase or decrease the set-point, which is inline with our expectations.\\
+
+\item part 7. Here you can see the output of the closed-loop system with hysteresis and the output of the closed-loop system with a relay with dead-band width ($d=h=2$):
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/10.7.JPG}
+	\caption{outputs with hysteresis and dead-band width}
+\end{figure}
+\newpage
+
+\item part 8. Here you can see the output of the closed-loop system with hysteresis with different values for M:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/10.8.JPG}
+	\caption{outputs with diﬀerence values for M}
+\end{figure}
+
+As we saw in (1.23) and (1.24), both frequency and amplitude of the limit cycle will increase as we increase M. As you can see in the Figure 1.33, the results of the simulation are inline with our expectations.\\
+
+
+   \item part 9. Closed-loop system (from part 9) with the hysteresis relay described in the paper is implemented in this figure:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/10.9.1.JPG}
+	\caption{Closed-loop system with the hysteresis relay}
+\end{figure}
+
+ \end{itemize}
+ 
+ If we go the same way we went in part 5 of question 10, this time with $G(s)=\frac{1.6}{s(1+s)}$, we will have from (1.18):
+
+\begin{equation}
+    \frac{(\omega ^2 - j\omega)}{1.6} =  \frac{4M}{\pi A} \sqrt{1-\alpha ^2} - j\frac{4M\alpha}{\pi A}
+\end{equation}
+
+So $A$ and $\omega$ can be find from these two equations:
+
+\begin{equation}
+    \frac{4M}{\pi A} \sqrt{1-\alpha ^2} = \frac{\omega ^2}{1.6} 
+\end{equation}
+
+\begin{equation}
+    \frac{4M\alpha}{\pi A} = \frac{\omega}{1.6}
+\end{equation}
+
+Then if we put $\alpha = \frac{a}{A}$ in the equations, we will have:
+
+\begin{equation}
+    \frac{4M}{\pi A^2} \sqrt{A2- a^2} = \frac{\omega ^2}{1.6} 
+\end{equation}
+
+\begin{equation}
+    \frac{4M a}{\pi A^2} = \frac{\omega}{1.6}
+\end{equation}
+
+By solving equations (1.30) and (1.31), we will get that the system has a limit cycle with $\omega = 1.01$ and $A = 7.10$. By simulating in Simulink, we get approximately a same result that you can see in Figure 1.35.
+ 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{images/10.9.2.JPG}
+	\caption{Closed-loop system output}
+\end{figure}
+\newpage
+{\huge References:}
+\begin{enumerate}
+	\item A Laboratory Exercise to Illustrate the Describing Function Technique (1986) - R. W. PRATT
+	\item PID Controllers, Theory, Design and Tuning (2nd Edition) - Åström, Karl
+\end{enumerate}
+\end{document}
